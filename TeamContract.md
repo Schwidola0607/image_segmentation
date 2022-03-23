@@ -15,3 +15,4 @@ Conflict Resolution: Even though it is highly unlikely that a conflict will aris
 Alexander Kwandou (kwandou2)
 Brandon Zhang (bz16) 
 Khoa Pham (khoadp2)
+Shao-Min Yeh (snyeh2)
