@@ -30,8 +30,8 @@ Same inputs and outputs as Dinic’s but runs in O(V x E^2), where V is the numb
 * Week 2 (April 04 - April 10): Transform the images to the graphs described above.
 * Week 3 (April 11 - April 17): Implement our graphs algorithms (likely Dinic’s)
 * Week 4 (April 17 - April 23): Implement our graphs algorithms (likey Edmond Karps)
-* Week 4 (April 23 - April 29): Make a TUI for users to input the background seeds and foreground seeds. 
-* Week 5 (April 30 - May 06): Work on the final presentation + final written proposal.
+* Week 5 (April 23 - April 29): Make a TUI for users to input the background seeds and foreground seeds. 
+* Week 6 (April 30 - May 06): Work on the final presentation + final written proposal.
 
 
 
