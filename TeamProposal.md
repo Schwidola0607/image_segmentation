@@ -7,7 +7,7 @@
 ## Dataset Acquisition and Processing
 * **Data Format\:** We will use the CIFAR-10 dataset (https://www.cs.toronto.edu/~kriz/cifar.html). The dataset consists of 60000 32x32 color images stored in 6 separate binary files. We will use a subset of this dataset consisting of 1000 randomly chosen images.
 * **Data Correction\:** Since the input dataset does not come as PNGs, we will have to do some preprocessing work in a Python notebook to produce our 1000 PNG sample. To simplify things, we also want our PNGs to be grayscale so we will pass those images into lab_intro’s grayscale function.
-* ** Data Processing\:** We will call our network flow algorithm on our image and find a min-cut from our resulting flow graph. The min-cut is then used to draw the actual outline where the image is segmented.
+* **Data Processing\:** We will call our network flow algorithm on our image and find a min-cut from our resulting flow graph. The min-cut is then used to draw the actual outline where the image is segmented.
 * **Data Storage\:**
   * A pixel in the image is a vertex in the graph labeled in row-major order. These vertices are called pixel vertices. In addition, there are two extra vertices that serve as the source and the sink.
   * There are two types of edges in this graph: n-links, which connect neighboring pixels and t-links connect the pixels with the source vertex and sink vertex.
