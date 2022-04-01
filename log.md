@@ -2,7 +2,7 @@
 
 * **Goal:** Finish preprocessing on image dataset - accomplished
 * **Tasks:**
-  * Alexander - Uploaded CS225 image library to the repo.
+  * Alexander - Uploaded CS225 image library to the repo. Made a .gitignore file for the repo.
   * Khoa - Wrote a Python script to download CIFAR-10 from https://github.com/knjcode/cifar2png and to select 10 images from each category randomly to reduce the size of the dataset. Saved the dataset in the data folder.
   * Brandon - Wrote a C++ script which used the CS225 image library to grayscale every image from the data folder and save them in a grayscale_data folder. Wrote a Makefile.
 * **Problems:** None
