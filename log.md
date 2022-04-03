@@ -7,3 +7,5 @@
   * Brandon - Wrote a C++ script which used the CS225 image library to grayscale every image from the data folder and save them in a grayscale_data folder. Wrote a Makefile.
 * **Problems:** None
 * **Next week:** Since we successfully accomplished this week's goal without any issues, we will continue following our initial plan in the team proposal - this means we will begin transforming the images into graphs.
+
+## Week 2 (April 4 - April 10)
