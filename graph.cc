@@ -1,7 +1,7 @@
 #include "graph.h"
 #include <cmath>
 
-static long long Graph::BoundaryPenalty(double p, double q){
+long long Graph::BoundaryPenalty(double p, double q){
     int Ip = static_cast<int>(p * 255), Iq = static_cast<int>(q * 255);
     return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2 * SIGMA * SIGMA));
 }
