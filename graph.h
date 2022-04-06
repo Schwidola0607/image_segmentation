@@ -11,7 +11,8 @@ using std::string;
 class Graph {
   PNG image;
   vector<Edge> edges; 
-  vector<int> vertexes;
+  vector<vector<Edge*>> adj_vertexes;
+  long long max_BP = 0;
 
   //takes in two luminance values from 0.0-1.0
   static long long BoundaryPenalty(double p, double q);
@@ -22,6 +23,6 @@ class Graph {
     Graph(string filename);
 
     //add t-link methods
-    AddBSeed(unsigned x, unsigned y);
-    AddFSeed(unsigned x, unsigned y);
+    void AddBSeed(unsigned x, unsigned y);
+    void AddFSeed(unsigned x, unsigned y);
 };

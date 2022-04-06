@@ -9,24 +9,44 @@ static long long Graph::BoundaryPenalty(double p, double q){
 Graph::Graph(string filename){
     image.readFromFile(filename);
 
-    for(int x=0; x<input.width(); ++x){
-        for(int y=0; y<input.height(); ++y){
-            vertexes.push_back(input.width()*y + x);
+    //the second last vertex is the source and the last vertex is the sink
+    adj_vertexes = vector<vector<Edge*>>(image.width() * image.height() + 2);
+
+    for(int x=0; x<image.width(); ++x){
+        for(int y=0; y<image.height(); ++y){
             if(x-1 >= 0){ //left
-                edges.push_back(Edge((input.width()*y + x, input.width()*y + x-1, BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x-1,y).l))));
+                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x-1,y).l);
+                if(bp > max_BP) max_BP = bp;
+                edges.push_back(Edge(image.width()*y + x, image.width()*y + x-1, bp));
+                adj_vertexes[image.width() * y + x].push_back(&edges.back());
             }
-            if(x+1 < input.width()){ //right
-                edges.push_back(Edge((input.width()*y + x, input.width()*y + x+1, BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x+1,y).l))));
+            if(x+1 < image.width()){ //right
+                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x+1,y).l);
+                if(bp > max_BP) max_BP = bp;
+                edges.push_back(Edge(image.width()*y + x, image.width()*y + x+1, bp));
+                adj_vertexes[image.width() * y + x].push_back(&edges.back());
             }
             if(y-1 >= 0){ //up
-                edges.push_back(Edge((input.width()*y + x, input.width()*(y-1) + x, BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y-1).l))));
+                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y-1).l);
+                if(bp > max_BP) max_BP = bp;
+                edges.push_back(Edge(image.width()*y + x, image.width()*(y-1) + x, bp));
+                adj_vertexes[image.width() * y + x].push_back(&edges.back());
             }
-            if(y+1 < input.height()){ //down
-                edges.push_back(Edge((input.width()*y + x, input.width()*(y+1) + x, BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y+1).l))));
+            if(y+1 < image.height()){ //down
+                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y+1).l);
+                if(bp > max_BP) max_BP = bp;
+                edges.push_back(Edge(image.width()*y + x, image.width()*(y+1) + x, bp));
+                adj_vertexes[image.width() * y + x].push_back(&edges.back());
             }
         }
     }
-    //first one is the source, second one is the sink
-    vertexes.push_back(input.width() * input.height());
-    vertexes.push_back(input.width() * input.height() + 1);
+}
+
+void Graph::AddBSeed(unsigned x, unsigned y){
+    edges.push_back(Edge(adj_vertexes.size()-2, image.width()*y + x, max_BP));
+    adj_vertexes[adj_vertexes.size()-2].push_back(&edges.back());
+}
+void Graph::AddFSeed(unsigned x, unsigned y){
+    edges.push_back(Edge(image.width()*y + x, adj_vertexes.size()-1, max_BP));
+    adj_vertexes[image.width()*y + x].push_back(&edges.back());
 }
