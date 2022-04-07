@@ -49,7 +49,7 @@ int main(int args, const char** argv) {
     if (x == -1 && y == -1) {
       break;
     }
-    if (x >= png.width() || y >= png.height() || x < 0 || y < 0) {
+    if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
       cout << "Ignore out of bound coordinate" << endl;
       continue;
     }
@@ -65,7 +65,7 @@ int main(int args, const char** argv) {
     if (x == -1 && y == -1) {
       break;
     }
-    if (x >= png.width() || y >= png.height() || x < 0 || y < 0) {
+    if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
       cout << "Ignore out of bound coordinate" << endl;
       continue;
     }

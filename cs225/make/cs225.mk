@@ -54,6 +54,9 @@ $(OBJS_DIR):
 # mp_mosaic specific
 	@mkdir -p $(OBJS_DIR)/cs225/ColorSpace
 	@mkdir -p $(OBJS_DIR)/util
+# Final project specific
+	
+
 
 # Rules for compiling source code.
 # - Every object file is required by $(EXE)
