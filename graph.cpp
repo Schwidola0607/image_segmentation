@@ -6,21 +6,26 @@ long long Graph::BoundaryPenalty(double p, double q){
     return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2 * SIGMA * SIGMA));
 }
 
+Graph::Graph(PNG png) : image(png) {
+    SetNLinks();
+}
+
 Graph::Graph(string filename){
     image.readFromFile(filename);
+    SetNLinks();
+}
 
-    //the second last vertex is the source and the last vertex is the sink
+void Graph::SetNLinks(){
     adj_vertexes = vector<vector<Edge*>>(image.width() * image.height() + 2);
-
-    for(int x=0; x<image.width(); ++x){
-        for(int y=0; y<image.height(); ++y){
+    for(int x=0; x<(int)image.width(); ++x){
+        for(int y=0; y<(int)image.height(); ++y){
             if(x-1 >= 0){ //left
                 long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x-1,y).l);
                 if(bp > max_BP) max_BP = bp;
                 edges.push_back(Edge(image.width()*y + x, image.width()*y + x-1, bp));
                 adj_vertexes[image.width() * y + x].push_back(&edges.back());
             }
-            if(x+1 < image.width()){ //right
+            if(x+1 < (int)image.width()){ //right
                 long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x+1,y).l);
                 if(bp > max_BP) max_BP = bp;
                 edges.push_back(Edge(image.width()*y + x, image.width()*y + x+1, bp));
@@ -32,7 +37,7 @@ Graph::Graph(string filename){
                 edges.push_back(Edge(image.width()*y + x, image.width()*(y-1) + x, bp));
                 adj_vertexes[image.width() * y + x].push_back(&edges.back());
             }
-            if(y+1 < image.height()){ //down
+            if(y+1 < (int)image.height()){ //down
                 long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y+1).l);
                 if(bp > max_BP) max_BP = bp;
                 edges.push_back(Edge(image.width()*y + x, image.width()*(y+1) + x, bp));

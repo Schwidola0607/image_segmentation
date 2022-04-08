@@ -4,3 +4,4 @@ feedback/
 *.d
 *.o
 .objs
+Dockerfile

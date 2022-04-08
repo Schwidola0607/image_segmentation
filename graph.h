@@ -21,8 +21,9 @@ class Graph {
 
   public:
     //initializes graph with n-links
+    Graph(PNG png);
     Graph(string filename);
-
+    void SetNLinks();
     //add t-link methods
     void AddBSeed(unsigned x, unsigned y);
     void AddFSeed(unsigned x, unsigned y);
