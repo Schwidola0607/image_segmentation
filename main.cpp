@@ -40,8 +40,6 @@ int main(int args, const char** argv) {
   }
   PNG png;
   png.readFromFile(inFile);
-  png.writeToFile("sanity_check.png");
-  cout << png.width() << ' ' << png.height() << '\n';
   cout << "Please type in foreground seeds as 2d coordinates" << endl;
   cout << "When finish type -1 -1" << endl;
   vector <pair <int, int>> foreground_coordinates;
