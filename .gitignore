@@ -1,3 +1,6 @@
 *.md
 feedback/
 .DS_Store
+*.d
+*.o
+.objs
