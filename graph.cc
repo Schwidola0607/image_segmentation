@@ -45,6 +45,7 @@ Graph::Graph(string filename){
 void Graph::AddBSeed(unsigned x, unsigned y){
     edges.push_back(Edge(adj_vertexes.size()-2, image.width()*y + x, max_BP));
     adj_vertexes[adj_vertexes.size()-2].push_back(&edges.back());
+    
 }
 void Graph::AddFSeed(unsigned x, unsigned y){
     edges.push_back(Edge(image.width()*y + x, adj_vertexes.size()-1, max_BP));
