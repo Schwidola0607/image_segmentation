@@ -6,11 +6,11 @@ long long Graph::BoundaryPenalty(double p, double q){
     return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2 * SIGMA * SIGMA));
 }
 
-Graph::Graph(PNG png) : image(png) {
+Graph::Graph(const PNG& png) : image(png) {
     SetNLinks();
 }
 
-Graph::Graph(string filename){
+Graph::Graph(const string& filename){
     image.readFromFile(filename);
     SetNLinks();
 }
