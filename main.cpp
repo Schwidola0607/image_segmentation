@@ -5,6 +5,7 @@
 #include <string>
 #include <set>
 #include <algorithm>
+#include "edmondkarps.h"
 
 using namespace util;
 using namespace cs225;
@@ -73,6 +74,11 @@ int main(int args, const char** argv) {
     background_coordinates.insert({x, y});  
   }
   Graph graph(inFile);
+  EdmondKarps ek(&graph);
+  vector <pair<int, int>> bruh = ek.getBackground();
+  // PNG imageSeg = graph.draw();
+  // imageSeg.writeToFile(outFile);
+
   // for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
   // for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
 }

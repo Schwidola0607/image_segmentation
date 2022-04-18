@@ -12,7 +12,6 @@ Graph::Graph(const PNG& png) : image(png) {
     num_vertex = adj.size();
     source = adj.size() - 2;
     sink = adj.size() - 1;
-
 }
 
 Graph::Graph(const string& filename){
