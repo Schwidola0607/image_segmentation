@@ -32,9 +32,9 @@ class Graph {
     
     //helper used by SetNLinks()
     void addEdge(int u, int v, int cap);
-    int id(int x, int y);
-    pair <int,int> coord(int id);
-    bool checkValid(int x, int y);
+    int id(int x, int y) const;
+    pair <int,int> coord(int id) const;
+    bool checkValid(int x, int y) const;
 
     //initializes graph with n-links
     Graph(const PNG& png);
@@ -42,4 +42,6 @@ class Graph {
     //add t-link methods
     void AddBSeed(unsigned x, unsigned y);
     void AddFSeed(unsigned x, unsigned y);
+
+    PNG draw(const vector<pair<int, int>>& background) const;
 };

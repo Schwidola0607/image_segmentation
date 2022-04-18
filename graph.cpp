@@ -22,14 +22,14 @@ Graph::Graph(const string& filename){
     sink = adj.size() - 1;
 }
 
-int Graph::id(int x, int y) {
+int Graph::id(int x, int y) const {
     return y * image.width() + x;
 }
 
-pair <int,int> Graph::coord(int id) {
+pair <int,int> Graph::coord(int id) const {
     return {id % image.width(), id / image.width()};
 }
-bool Graph::checkValid(int x, int y) {
+bool Graph::checkValid(int x, int y) const {
     return (x >= 0 && y >= 0 && x < image.width() && y < image.height());
 }
 
@@ -72,3 +72,14 @@ void Graph::AddFSeed(unsigned x, unsigned y){
     addEdge(u, sink, max_BP);
 }
 
+PNG Graph::draw(const vector<pair<int, int>>& background) const{
+    PNG to_return = image;
+    for(const pair<int,int>& p : background){
+        HSLAPixel& pixel = to_return.getPixel(p.first,p.second);
+        pixel.l -= 0.2;
+        if(pixel.l < 0){
+            pixel.l = 0;
+        }
+    }
+    return to_return;
+}
