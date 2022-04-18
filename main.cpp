@@ -73,6 +73,6 @@ int main(int args, const char** argv) {
     background_coordinates.insert({x, y});  
   }
   Graph graph(inFile);
-  for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
-  for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
+  // for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
+  // for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
 }
