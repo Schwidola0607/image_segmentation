@@ -8,51 +8,78 @@ long long Graph::BoundaryPenalty(double p, double q){
 
 Graph::Graph(const PNG& png) : image(png) {
     SetNLinks();
+    num_vertex = adj.size();
+    source = adj.size() - 2;
+    sink = adj.size() - 1;
+
 }
 
 Graph::Graph(const string& filename){
     image.readFromFile(filename);
     SetNLinks();
+    num_vertex = adj.size();
+    source = adj.size() - 2;
+    sink = adj.size() - 1;
+}
+
+int Graph::id(int x, int y) const {
+    return y * image.width() + x;
+}
+
+pair <int,int> Graph::coord(int id) const {
+    return {id % image.width(), id / image.width()};
+}
+bool Graph::checkValid(int x, int y) const {
+    return (x >= 0 && y >= 0 && x < image.width() && y < image.height());
+}
+
+void Graph::addEdge(int u, int v, int cap) {
+    edges.push_back(Edge(u, v, cap));
+    edges.push_back(Edge(v, u, 0));
+    adj[u].push_back(num_edge);
+    adj[v].push_back(num_edge + 1);
+    num_edge += 2;
 }
 
 void Graph::SetNLinks(){
-    adj_vertexes = vector<vector<Edge*>>(image.width() * image.height() + 2);
-    for(int x=0; x<(int)image.width(); ++x){
-        for(int y=0; y<(int)image.height(); ++y){
-            if(x-1 >= 0){ //left
-                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x-1,y).l);
-                if(bp > max_BP) max_BP = bp;
-                edges.push_back(Edge(image.width()*y + x, image.width()*y + x-1, bp));
-                adj_vertexes[image.width() * y + x].push_back(&edges.back());
-            }
-            if(x+1 < (int)image.width()){ //right
-                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x+1,y).l);
-                if(bp > max_BP) max_BP = bp;
-                edges.push_back(Edge(image.width()*y + x, image.width()*y + x+1, bp));
-                adj_vertexes[image.width() * y + x].push_back(&edges.back());
-            }
-            if(y-1 >= 0){ //up
-                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y-1).l);
-                if(bp > max_BP) max_BP = bp;
-                edges.push_back(Edge(image.width()*y + x, image.width()*(y-1) + x, bp));
-                adj_vertexes[image.width() * y + x].push_back(&edges.back());
-            }
-            if(y+1 < (int)image.height()){ //down
-                long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x,y+1).l);
-                if(bp > max_BP) max_BP = bp;
-                edges.push_back(Edge(image.width()*y + x, image.width()*(y+1) + x, bp));
-                adj_vertexes[image.width() * y + x].push_back(&edges.back());
+    vector <int> dx{-1, 1, 0, 0};
+    vector <int> dy{0, 0, -1, 1};
+
+    adj = vector<vector<int>>(num_vertex);
+    for(int x = 0; x < (int)image.width(); ++x){
+        for(int y = 0; y < (int)image.height(); ++y){
+            for (int dir = 0; dir < 4; dir++) {
+                int nx = x + dx[dir];
+                int ny = y + dy[dir];
+                if (checkValid(nx, ny)) {
+                    long long bp = BoundaryPenalty(image.getPixel(x,y).l, image.getPixel(x+1,y).l);
+                    max_BP = std::max(max_BP, bp);
+                    int u = id(x, y);
+                    int v = id(nx, ny);
+                    addEdge(u, v, bp);
+                }
             }
         }
     }
 }
 
 void Graph::AddBSeed(unsigned x, unsigned y){
-    edges.push_back(Edge(adj_vertexes.size()-2, image.width()*y + x, max_BP));
-    adj_vertexes[adj_vertexes.size()-2].push_back(&edges.back());
-    
+    int u = id(x, y);
+    addEdge(source, u, max_BP);
 }
 void Graph::AddFSeed(unsigned x, unsigned y){
-    edges.push_back(Edge(image.width()*y + x, adj_vertexes.size()-1, max_BP));
-    adj_vertexes[image.width()*y + x].push_back(&edges.back());
+    int u = id(x, y);
+    addEdge(u, sink, max_BP);
+}
+
+PNG Graph::draw(const vector<pair<int, int>>& background) const{
+    PNG to_return = image;
+    for(const pair<int,int>& p : background){
+        HSLAPixel& pixel = to_return.getPixel(p.first,p.second);
+        pixel.l -= 0.2;
+        if(pixel.l < 0){
+            pixel.l = 0;
+        }
+    }
+    return to_return;
 }
