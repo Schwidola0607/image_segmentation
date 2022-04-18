@@ -1,10 +1,9 @@
 #include "edmondkarps.h"
-
+EdmondKarps::EdmondKarps(Graph* g) : g(g) {}
 long long EdmondKarps::bfs(int s, int t, vector <int>& parent) {
   fill(parent.begin(), parent.end(), -1);      
   queue <pair<int, long long>> q;
   q.push({s, INF});
-
   while (!q.empty()) {
     int u = q.front().first;
     long long flow = q.front().second;
@@ -30,7 +29,11 @@ long long EdmondKarps::maxFlow() {
   long long flow = 0;
   vector <int> parent(g->num_vertex);
   long long new_flow;
-  while (new_flow = bfs(g->source, g->sink, parent)) {
+  while (true) {
+    new_flow = bfs(g->source, g->sink, parent);
+    if (!new_flow) {
+      break;
+    }
     flow += new_flow;
     int curr = g->sink;
     while (curr != g->source) {

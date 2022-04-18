@@ -6,3 +6,4 @@ Dockerfile
 *.o
 .objs
 Dockerfile
+main
