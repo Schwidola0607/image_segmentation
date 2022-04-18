@@ -1,6 +1,7 @@
 #include <iostream>
 #include "util/util.h"
 #include "cs225/PNG.h"
+#include "graph.h"
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -71,4 +72,7 @@ int main(int args, const char** argv) {
     }
     background_coordinates.push_back({x, y});  
   }
+  Graph graph(inFile);
+  for (pair<int,int> p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
+  for (pair<int,int> p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
 }

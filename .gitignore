@@ -1,10 +1,7 @@
 *.md
 feedback/
 .DS_Store
-<<<<<<< HEAD
 Dockerfile
-=======
 *.d
 *.o
 .objs
->>>>>>> 12fbe8e40fd6f5b924d7394e2b50786bc6392e9a

@@ -7,6 +7,7 @@
 
 using std::vector;
 using std::string;
+using namespace cs225;
 
 class Graph {
   PNG image;
