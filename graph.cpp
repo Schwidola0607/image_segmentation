@@ -8,6 +8,7 @@ long long Graph::BoundaryPenalty(double p, double q){
 
 Graph::Graph(const PNG& png) : image(png) {
     SetNLinks();
+    num_edge = 0;
     num_vertex = adj.size();
     source = adj.size() - 2;
     sink = adj.size() - 1;
@@ -17,6 +18,7 @@ Graph::Graph(const PNG& png) : image(png) {
 Graph::Graph(const string& filename){
     image.readFromFile(filename);
     SetNLinks();
+    num_edge = 0;
     num_vertex = adj.size();
     source = adj.size() - 2;
     sink = adj.size() - 1;

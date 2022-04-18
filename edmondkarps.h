@@ -15,6 +15,7 @@ class EdmondKarps {
   private:
     Graph* g;
   public: 
+    EdmondKarps(Graph* g);
     long long bfs(int s, int t, vector <int>& parent);
     long long maxFlow();
     vector <pair<int, int>> getBackground();
