@@ -19,10 +19,13 @@ class Graph {
   static long long BoundaryPenalty(double p, double q);
   static constexpr unsigned SIGMA = 30;
 
+  //helper used by both constructors to set n-links
+  void SetNLinks();
+  
   public:
     //initializes graph with n-links
-    Graph(string filename);
-
+    Graph(const PNG& png);
+    Graph(const string& filename);
     //add t-link methods
     void AddBSeed(unsigned x, unsigned y);
     void AddFSeed(unsigned x, unsigned y);

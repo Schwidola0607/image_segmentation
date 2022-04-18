@@ -3,7 +3,7 @@
 #include "cs225/PNG.h"
 #include "graph.h"
 #include <string>
-#include <vector>
+#include <set>
 #include <algorithm>
 
 using namespace util;
@@ -42,8 +42,8 @@ int main(int args, const char** argv) {
   PNG png;
   png.readFromFile(inFile);
   cout << "Please type in foreground seeds as 2d coordinates" << endl;
-  cout << "When finish type -1 -1" << endl;
-  vector <pair <int, int>> foreground_coordinates;
+  cout << "When finished, type -1 -1" << endl;
+  set<pair<int, int>> foreground_coordinates;
   while (true) {
     int x, y;
     cin >> x >> y;
@@ -51,15 +51,15 @@ int main(int args, const char** argv) {
       break;
     }
     if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
-      cout << "Ignore out of bound coordinate" << endl;
+      cout << "Ignore out of bounds coordinates" << endl;
       continue;
     }
-    foreground_coordinates.push_back({x, y});  
+    foreground_coordinates.insert({x,y});  
   }
   
   cout << "Please type in background seeds as 2d coordinates" << endl;
-  cout << "When finish type -1 -1" << endl;
-  vector <pair <int, int>> background_coordinates;
+  cout << "When finished, type -1 -1" << endl;
+  set<pair<int, int>> background_coordinates;
   while (true) {
     int x, y;
     cin >> x >> y;
@@ -67,12 +67,12 @@ int main(int args, const char** argv) {
       break;
     }
     if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
-      cout << "Ignore out of bound coordinate" << endl;
+      cout << "Ignore out of bounds coordinates" << endl;
       continue;
     }
-    background_coordinates.push_back({x, y});  
+    background_coordinates.insert({x, y});  
   }
   Graph graph(inFile);
-  for (pair<int,int> p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
-  for (pair<int,int> p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
+  for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
+  for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
 }
