@@ -30,7 +30,7 @@ pair <int,int> Graph::coord(int id) const {
     return {id % image.width(), id / image.width()};
 }
 bool Graph::checkValid(int x, int y) const {
-    return (x >= 0 && y >= 0 && x < image.width() && y < image.height());
+    return (x >= 0 && y >= 0 && x < (int)image.width() && y < (int)image.height());
 }
 
 void Graph::addEdge(int u, int v, int cap) {

@@ -27,3 +27,12 @@ Khoa compiles papers and other repo's approaches based on some intricacies withi
 * **Problems:** None  
 * **Next week:** Since we successfully accomplished this week's goal faster than expected, we decide to speed up our plan and is looking into Dinic's algorithm this week and hopefully be able to finish it earlier next week.  
 * **Optional:** If we have time next week we might consider look into CMake and Catch framework next week.  
+
+## Week 3 (April 11 - April 17)
+
+* **Goal:** Implement one graph algorithm - accomplished
+* **Tasks:** (most of this work can be found on the edmond_karps branch)
+  * Khoa created the EdmondKarps class, where the Edmond-Karps algorithm is implemented (+ BFS). Also revised the Graph class to help with implementing the algorithm.
+  * Brandon implemented the draw method in Graph, which darkens the background pixels obtained from Edmond-Karps and returns the resulting PNG.
+* **Problems:** The Edmond-Karps algorithm has not been tested yet.
+* **Next week:** We will continue with our plan to work on Dinic's next week, as well as test our Edmond-Karps implementation. If problems arise, we will have to dedicate more time to Edmond-Karps next week as well.
