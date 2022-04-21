@@ -79,11 +79,11 @@ int main(int args, const char** argv) {
 
   EdmondKarps ekarp(&graph);
   long long max_flow = ekarp.maxFlow();
-  std::cout << max_flow << '\n';
+  // std::cout << max_flow << '\n';
   vector <pair <int, int>> bg_pixels = ekarp.getBackground();
-  std::cout << __LINE__ << '\n';
+  // std::cout << __LINE__ << '\n';
   PNG segmented_png = graph.draw(bg_pixels);  
-  std::cout << __LINE__ << '\n';
+  // std::cout << __LINE__ << '\n';
 
   segmented_png.writeToFile(outFile);
 }

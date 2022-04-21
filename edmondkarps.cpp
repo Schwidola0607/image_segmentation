@@ -50,7 +50,7 @@ long long EdmondKarps::maxFlow() {
 
 vector <pair<int, int>> EdmondKarps::getBackground() {
   vector <pair<int, int>> background_pixels;
-  vector <int> vis(g->num_vertex);
+  vector <int> vis(g->num_vertex - 2);
   queue <int> q;
   q.push(g->source);
   vis[g->source] = 1;
