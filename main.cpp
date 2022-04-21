@@ -1,6 +1,7 @@
 #include <iostream>
 #include "util/util.h"
 #include "cs225/PNG.h"
+#include "edmondkarps.h"
 #include "graph.h"
 #include <string>
 #include <set>
@@ -43,7 +44,7 @@ int main(int args, const char** argv) {
   png.readFromFile(inFile);
   cout << "Please type in foreground seeds as 2d coordinates" << endl;
   cout << "When finished, type -1 -1" << endl;
-  set<pair<int, int>> foreground_coordinates;
+  set<pair<int, int>> foreground_seeds;
   while (true) {
     int x, y;
     cin >> x >> y;
@@ -54,12 +55,12 @@ int main(int args, const char** argv) {
       cout << "Ignore out of bounds coordinates" << endl;
       continue;
     }
-    foreground_coordinates.insert({x,y});  
+    foreground_seeds.insert({x,y});  
   }
   
   cout << "Please type in background seeds as 2d coordinates" << endl;
   cout << "When finished, type -1 -1" << endl;
-  set<pair<int, int>> background_coordinates;
+  set<pair<int, int>> background_seeds;
   while (true) {
     int x, y;
     cin >> x >> y;
@@ -70,9 +71,19 @@ int main(int args, const char** argv) {
       cout << "Ignore out of bounds coordinates" << endl;
       continue;
     }
-    background_coordinates.insert({x, y});  
+    background_seeds.insert({x, y});  
   }
   Graph graph(inFile);
-  // for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
-  // for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
+  for (const pair<int,int>& p : foreground_seeds) { graph.AddFSeed(p.first, p.second); } 
+  for (const pair<int,int>& p : background_seeds) { graph.AddBSeed(p.first, p.second); }
+
+  EdmondKarps ekarp(&graph);
+  long long max_flow = ekarp.maxFlow();
+  std::cout << max_flow << '\n';
+  vector <pair <int, int>> bg_pixels = ekarp.getBackground();
+  std::cout << __LINE__ << '\n';
+  PNG segmented_png = graph.draw(bg_pixels);  
+  std::cout << __LINE__ << '\n';
+
+  segmented_png.writeToFile(outFile);
 }

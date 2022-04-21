@@ -1,9 +1,9 @@
 #include "graph.h"
 #include <cmath>
 
-long long Graph::BoundaryPenalty(double p, double q){
+long long Graph::BoundaryPenalty(double p, double q) const{
     int Ip = static_cast<int>(p * 255), Iq = static_cast<int>(q * 255);
-    return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2 * SIGMA * SIGMA));
+    return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2LL * this->SIGMA * this->SIGMA));
 }
 
 Graph::Graph(const PNG& png) : image(png) {
@@ -55,7 +55,7 @@ void Graph::SetNLinks(){
                 int ny = y + dy[dir];
                 if (checkValid(nx, ny)) {
                     long long bp = BoundaryPenalty(image.getPixel(x, y).l, image.getPixel(nx, ny).l);
-                    max_BP = std::max(max_BP, bp);
+                    this->max_BP = std::max(max_BP, bp);
                     int u = id(x, y);
                     int v = id(nx, ny);
                     addEdge(u, v, bp);

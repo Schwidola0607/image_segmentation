@@ -56,6 +56,7 @@ vector <pair<int, int>> EdmondKarps::getBackground() {
   vis[g->source] = 1;
   while (!q.empty()) {
     int u = q.front();
+    q.pop();
     for (int id: g->adj[u]) {
       int v = g->edges[id].to;
       if (!vis[v] && g->edges[id].cap - g->edges[id].flow > 0) {

@@ -24,8 +24,8 @@ class Graph {
     int sink; 
 
     //takes in two luminance values from 0.0-1.0
-    static long long BoundaryPenalty(double p, double q);
-    static constexpr unsigned SIGMA = 30;
+    long long BoundaryPenalty(double p, double q) const;
+    const unsigned SIGMA = 30;
 
     //helper used by both constructors to set n-links
     void SetNLinks();
