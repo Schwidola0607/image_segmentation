@@ -3,7 +3,7 @@
 
 long long Graph::BoundaryPenalty(double p, double q) const{
     int Ip = static_cast<int>(p * 255), Iq = static_cast<int>(q * 255);
-    return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2LL * this->SIGMA * this->SIGMA));
+    return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2.0 * this->SIGMA * this->SIGMA));
 }
 
 Graph::Graph(const PNG& png) : image(png) {
@@ -82,6 +82,7 @@ PNG Graph::draw(const vector<pair<int, int>>& background) const{
             HSLAPixel& pixel = to_return.getPixel(x,y);
             pixel.s = 1;
             pixel.h = 120;
+            pixel.l = 0.5;
         }
     }
 
