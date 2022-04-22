@@ -44,13 +44,13 @@ void Graph::addEdge(int u, int v, int cap) {
 }
 
 void Graph::SetNLinks(){
-    vector <int> dx{-1, 1, 0, 0};
-    vector <int> dy{0, 0, -1, 1};
+    vector <int> dx{1, 0};
+    vector <int> dy{0, 1};
     int n = image.width() * image.height();
     adj = vector<vector<int>>(n + 2);
     for(int x = 0; x < (int)image.width(); ++x){
         for(int y = 0; y < (int)image.height(); ++y){
-            for (int dir = 0; dir < 4; dir++) {
+            for (int dir = 0; dir < 2; dir++) {
                 int nx = x + dx[dir];
                 int ny = y + dy[dir];
                 if (checkValid(nx, ny)) {
