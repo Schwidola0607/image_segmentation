@@ -1,5 +1,8 @@
 #include "graph.h"
 #include <cmath>
+#include <set>
+
+using std::set;
 
 long long Graph::BoundaryPenalty(double p, double q) const{
     int Ip = static_cast<int>(p * 255), Iq = static_cast<int>(q * 255);
@@ -76,12 +79,20 @@ void Graph::AddFSeed(unsigned x, unsigned y){
 
 PNG Graph::draw(const vector<pair<int, int>>& background) const{
     PNG to_return = image;
-    for(const pair<int,int>& p : background){
-        HSLAPixel& pixel = to_return.getPixel(p.first,p.second);
-        pixel.l -= 0.2;
-        if(pixel.l < 0){
-            pixel.l = 0;
+
+    set<pair<int,int>> background_set(background.begin(), background.end());
+
+    for(int x=0; x<static_cast<int>(to_return.width()); ++x){
+        for(int y=0; y<static_cast<int>(to_return.height()); ++y){
+            HSLAPixel& pixel = to_return.getPixel(x,y);
+            pixel.s = 1;
+            if(background_set.count({x,y})){
+                pixel.h = 0;
+            } else {
+                pixel.h = 120;
+            }
         }
     }
+
     return to_return;
 }
