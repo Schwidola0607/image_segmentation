@@ -158,3 +158,21 @@ TEST_CASE("Edmond_Karps 3x3 #5"){
     actual.writeToFile("tests/3x3tests/5_actual_e.png");
     REQUIRE(expected == actual);
 }
+
+
+/*
+Answer for each test cases
+1: 3
+2: 4
+3: 2000000000
+4: 0
+5: 1000000000000
+6: 60
+7: 1093765123
+8: 1
+9: 6
+10: 3
+11: 111000000000
+12: 2
+13: 248
+*/
