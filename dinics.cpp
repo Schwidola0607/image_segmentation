@@ -7,7 +7,6 @@ bool Dinics::bfs(int s, int t, vector <int>& dist) {
   while (!q.empty()) {
     int u = q.front();
     q.pop();
-    std::cout << u << " " << t << "\n";
     if (u == t) break;
     for (int i : g -> adj[u]) {
       Edge e = g->edges[i];
@@ -40,8 +39,7 @@ long long Dinics::maxFlow() {
   long long flow = 0;
   vector <int> dist(g->num_vertex);
   vector <int> explore(g->num_vertex);
-  while (true) {
-    if (!bfs(g -> source, g -> sink, dist)) break;
+  while (bfs(g -> source, g -> sink, dist)) {
     while (true) {
       fill(explore.begin(), explore.end(), 0);
       long long new_flow = dfs(g -> source, g -> sink, INF, explore, dist);
@@ -68,12 +66,10 @@ vector <pair<int, int>> Dinics::getBackground() {
       }
     }
   }
-
   for (int v = 0; v < (int)vis.size(); v++) {
     if (vis[v]) {
       background_pixels.push_back(g->coord(v));
     }
   }
-
   return background_pixels;
 }
