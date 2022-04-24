@@ -3,6 +3,7 @@
 #include "../cs225/PNG.h"
 #include "../dinics.h"
 #include "../graph.h"
+#include "../edmondkarps.h"
 
 #include <vector>
 #include <utility>

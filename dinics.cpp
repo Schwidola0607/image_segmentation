@@ -7,6 +7,7 @@ bool Dinics::bfs(int s, int t, vector <int>& dist) {
   while (!q.empty()) {
     int u = q.front();
     q.pop();
+    std::cout << u << " " << t << "\n";
     if (u == t) break;
     for (int i : g -> adj[u]) {
       Edge e = g->edges[i];
@@ -52,7 +53,7 @@ long long Dinics::maxFlow() {
 }
 vector <pair<int, int>> Dinics::getBackground() {
   vector <pair<int, int>> background_pixels;
-  vector <int> vis(g->num_vertex - 2);
+  vector <int> vis(g->num_vertex-2);
   queue <int> q;
   q.push(g->source);
   vis[g->source] = 1;
