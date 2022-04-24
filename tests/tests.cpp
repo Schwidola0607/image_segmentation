@@ -27,6 +27,7 @@ TEST_CASE("Dinics 3x3 #1"){
     PNG expected;
     expected.readFromFile("3x3tests/1_expected.png");
     PNG actual = drawDinics(g);
+    actual.writeToFile("tests/1_actual.png");
     REQUIRE(expected == actual);
 }
 
@@ -39,6 +40,7 @@ TEST_CASE("Dinics 3x3 #2"){
     PNG expected;
     expected.readFromFile("3x3tests/2_expected.png");
     PNG actual = drawDinics(g);
+    actual.writeToFile("tests/2_actual.png");
     REQUIRE(expected == actual);
 }
 
@@ -52,6 +54,7 @@ TEST_CASE("Dinics 3x3 #3"){
     PNG expected;
     expected.readFromFile("3x3tests/3_expected.png");
     PNG actual = drawDinics(g);
+    actual.writeToFile("tests/3_actual.png");
     REQUIRE(expected == actual);
 }
 
@@ -65,6 +68,7 @@ TEST_CASE("Dinics 3x3 #4"){
     PNG expected;
     expected.readFromFile("3x3tests/4_expected.png");
     PNG actual = drawDinics(g);
+    actual.writeToFile("tests/4_actual.png");
     REQUIRE(expected == actual);
 }
 
@@ -79,5 +83,6 @@ TEST_CASE("Dinics 3x3 #5"){
     PNG expected;
     expected.readFromFile("3x3tests/5_expected.png");
     PNG actual = drawDinics(g);
+    actual.writeToFile("tests/5_actual.png");
     REQUIRE(expected == actual);
 }
