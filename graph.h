@@ -30,8 +30,10 @@ class Graph {
     //helper used by both constructors to set n-links
     void SetNLinks();
     
-    //helper used by SetNLinks()
+    //helper used by SetBSeed and SetFseed()
     void addEdge(int u, int v, int cap);
+    //helper used by SetNLinks
+    void addEdgeNeighbor(int u, int v, int cap);
     int id(int x, int y) const;
     pair <int,int> coord(int id) const;
     bool checkValid(int x, int y) const;

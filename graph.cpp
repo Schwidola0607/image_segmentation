@@ -2,8 +2,8 @@
 #include <cmath>
 
 long long Graph::BoundaryPenalty(double p, double q) const{
-    int Ip = static_cast<int>(p * 255), Iq = static_cast<int>(q * 255);
-    return 100 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2.0 * this->SIGMA * this->SIGMA));
+    double Ip = p * 255, Iq = (q * 255);
+    return (long long)10000 * std::exp(-((Ip - Iq) * (Ip - Iq)) / (2.0 * this->SIGMA * this->SIGMA));
 }
 
 Graph::Graph(const PNG& png) : image(png) {
@@ -43,6 +43,14 @@ void Graph::addEdge(int u, int v, int cap) {
     num_edge += 2;
 }
 
+void Graph::addEdgeNeighbor(int u, int v, int cap) {
+    edges.push_back(Edge(u, v, cap));
+    edges.push_back(Edge(v, u, cap));
+    adj[u].push_back(num_edge);
+    adj[v].push_back(num_edge + 1);
+    num_edge += 2;
+}
+
 void Graph::SetNLinks(){
     vector <int> dx{1, 0};
     vector <int> dy{0, 1};
@@ -58,7 +66,7 @@ void Graph::SetNLinks(){
                     this->max_BP = std::max(max_BP, bp);
                     int u = id(x, y);
                     int v = id(nx, ny);
-                    addEdge(u, v, bp);
+                    addEdgeNeighbor(u, v, bp);
                 }
             }
         }

@@ -80,7 +80,8 @@ int main(int args, const char** argv) {
 
   Dinics ekarp(&graph);
   long long max_flow = ekarp.maxFlow();
-  // std::cout << max_flow << '\n';
+  // std::cout << "For file: " << outFile << '\n';
+  // std::cout << "Max flow is: " << max_flow << '\n';
   vector <pair <int, int>> bg_pixels = ekarp.getBackground();
   // std::cout << __LINE__ << '\n';
   PNG segmented_png = graph.draw(bg_pixels);  
