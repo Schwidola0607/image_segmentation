@@ -1,4 +1,6 @@
 #include "edmondkarps.h"
+#include <iostream>
+using namespace std;
 EdmondKarps::EdmondKarps(Graph* g) : g(g) {}
 long long EdmondKarps::bfs(int s, int t, vector <int>& parent) {
   fill(parent.begin(), parent.end(), -1);      
@@ -8,9 +10,12 @@ long long EdmondKarps::bfs(int s, int t, vector <int>& parent) {
     int u = q.front().first;
     long long flow = q.front().second;
     q.pop();
-
+    cout << u << '\n';
+    cout << "size_adjance: " << g->adj[u].size() << '\n';
     for (int id: g->adj[u]) {
       Edge e = g->edges[id];
+      cout << "edgy\n";
+      cout << id << ' ' << g->edges.size() << '\n';
       int v = e.to;
       if (parent[v] == -1 && e.cap - e.flow > 0) {
         parent[v] = id;
@@ -31,9 +36,11 @@ long long EdmondKarps::maxFlow() {
   long long new_flow;
   while (true) {
     new_flow = bfs(g->source, g->sink, parent);
+    // cout << new_flow << '\n';
     if (!new_flow) {
       break;
     }
+    cout << __LINE__ << '\n';
     flow += new_flow;
     int curr = g->sink;
     while (curr != g->source) {

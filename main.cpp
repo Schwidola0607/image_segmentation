@@ -74,11 +74,19 @@ int main(int args, const char** argv) {
     background_coordinates.insert({x, y});  
   }
   Graph graph(inFile);
-  EdmondKarps ek(&graph);
-  vector <pair<int, int>> bruh = ek.getBackground();
-  // PNG imageSeg = graph.draw();
-  // imageSeg.writeToFile(outFile);
 
-  // for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
-  // for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
+  for (const pair<int,int>& p : foreground_coordinates) { graph.AddFSeed(p.first, p.second); } 
+  for (const pair<int,int>& p : background_coordinates) { graph.AddBSeed(p.first, p.second); }
+
+  EdmondKarps ek(&graph);
+  cout << ek.maxFlow() << '\n';
+  vector <pair<int, int>> bruh;
+  for(int i=0; i<32; i++) {
+    bruh.push_back(pair<int, int>(i, 2));
+  }
+  // ek.getBackground();
+  PNG imageSeg = graph.draw(bruh);
+  imageSeg.writeToFile(outFile);
+
+
 }
