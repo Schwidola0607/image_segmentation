@@ -10,9 +10,9 @@ bool Dinics::bfs(int s, int t, vector <int>& dist) {
     if (u == t) break;
     for (int i : g -> adj[u]) {
       Edge e = g->edges[i];
-      if (dist[i] == -1 && e.cap > e.flow) {
-        q.push(i);
-        dist[i] = dist[u] + 1;
+      if (dist[e.to] == -1 && e.cap > e.flow) {
+        q.push(e.to);
+        dist[e.to] = dist[u] + 1;
       }
     }
   }
@@ -25,7 +25,7 @@ long long Dinics::dfs(int s, int t, long long flow, vector <int>& explore, vecto
     Edge& oe = g -> edges[g -> adj[s][explore[s]]^1];
     if (dist[e.to] == dist[e.from] + 1 && e.flow < e.cap) {
       long long curr = min(flow, e.cap - e.flow);
-      long long temp = dfs(g -> adj[s][explore[s]], t, curr, explore, dist);
+      long long temp = dfs(e.to, t, curr, explore, dist);
       if (temp > 0) {
         e.flow += temp;
         oe.flow -= temp;
