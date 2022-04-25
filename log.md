@@ -36,3 +36,13 @@ Khoa compiles papers and other repo's approaches based on some intricacies withi
   * Brandon implemented the draw method in Graph, which darkens the background pixels obtained from Edmond-Karps and returns the resulting PNG.
 * **Problems:** The Edmond-Karps algorithm has not been tested yet.
 * **Next week:** We will continue with our plan to work on Dinic's next week, as well as test our Edmond-Karps implementation. If problems arise, we will have to dedicate more time to Edmond-Karps next week as well.
+
+## Week 4 (April 17 - April 23)
+
+* **Goal:** Test first graph algorithm and implement second algorithm - accomplished
+* **Tasks:**
+  * Shao-Min created the Dinics class, where the Dinics algorithm is implemented (+ BFS / DFS).
+  * Khoa patched bugs in the Graph class related to how the graph is constructed.
+  * Brandon wrote test cases for each algorithm and improved Graph's draw method.
+* **Problems:** None
+* **Next week:** We will use next week to further test our graph algorithms as well as begin work on our final deliverables. We will also look into creating a GUI that prompts users to place down background/foreground seeds on the image.
