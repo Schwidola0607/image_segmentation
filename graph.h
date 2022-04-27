@@ -24,14 +24,16 @@ class Graph {
     int sink; 
 
     //takes in two luminance values from 0.0-1.0
-    static long long BoundaryPenalty(double p, double q);
-    static constexpr unsigned SIGMA = 30;
+    long long BoundaryPenalty(double p, double q) const;
+    const unsigned SIGMA = 30;
 
     //helper used by both constructors to set n-links
     void SetNLinks();
     
-    //helper used by SetNLinks()
+    //helper used by SetBSeed and SetFseed()
     void addEdge(int u, int v, int cap);
+    //helper used by SetNLinks
+    void addEdgeNeighbor(int u, int v, int cap);
     int id(int x, int y) const;
     pair <int,int> coord(int id) const;
     bool checkValid(int x, int y) const;
