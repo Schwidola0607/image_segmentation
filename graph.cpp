@@ -1,5 +1,8 @@
 #include "graph.h"
 #include <cmath>
+#include <set>
+
+using std::set;
 
 long long Graph::BoundaryPenalty(double p, double q) const{
     double Ip = p * 255, Iq = (q * 255);
@@ -98,5 +101,23 @@ PNG Graph::draw(const vector<pair<int, int>>& background) const{
         to_return.getPixel(point.first,point.second).h = 0;
     }
 
+    return to_return;
+}
+
+PNG Graph::drawLine(const vector<pair<int, int>>& background) const{
+    PNG to_return = image;
+
+    set<pair<int,int>> background_set(background.begin(), background.end());
+    for(int x=0; x<static_cast<int>(to_return.width()); ++x){
+        for(int y=0; y<static_cast<int>(to_return.height()); ++y){
+            if(background_set.count({x,y}) && 
+            ((x > 0 && !background_set.count({x-1,y})) || 
+            (x < static_cast<int>(to_return.width()) - 1 && !background_set.count({x+1,y})) || 
+            (y > 0 && !background_set.count({x,y-1})) || 
+            (y < static_cast<int>(to_return.height()) - 1 && !background_set.count({x,y+1})))){
+                to_return.getPixel(x,y) = HSLAPixel(0,1,0.5);
+            }
+        }
+    }
     return to_return;
 }

@@ -46,4 +46,5 @@ class Graph {
     void AddFSeed(unsigned x, unsigned y);
 
     PNG draw(const vector<pair<int, int>>& background) const;
+    PNG drawLine(const vector<pair<int,int>>& background) const;
 };

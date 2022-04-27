@@ -84,7 +84,7 @@ int main(int args, const char** argv) {
   // std::cout << "Max flow is: " << max_flow << '\n';
   vector <pair <int, int>> bg_pixels = ekarp.getBackground();
   // std::cout << __LINE__ << '\n';
-  PNG segmented_png = graph.draw(bg_pixels);  
+  PNG segmented_png = graph.drawLine(bg_pixels);  
   // std::cout << __LINE__ << '\n';
 
   segmented_png.writeToFile(outFile);
