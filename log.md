@@ -44,5 +44,6 @@ Khoa compiles papers and other repo's approaches based on some intricacies withi
   * Shao-Min created the Dinics class, where the Dinics algorithm is implemented (+ BFS / DFS).
   * Khoa patched bugs in the Graph class related to how the graph is constructed.
   * Brandon wrote test cases for each algorithm and improved Graph's draw method.
+  * Kwandou created the ImageSegmentation.py script to take in an image path and allow the user to pick background and foreground seeds. It then outputs a text file which you can copy and paste as input into the main image segmentation program and also outputs the seeds that you picked as an output image.
 * **Problems:** None
 * **Next week:** We will use next week to further test our graph algorithms as well as begin work on our final deliverables. We will also look into creating a GUI that prompts users to place down background/foreground seeds on the image.
