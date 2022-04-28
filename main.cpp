@@ -2,6 +2,7 @@
 #include "util/util.h"
 #include "cs225/PNG.h"
 #include "edmondkarps.h"
+#include "dinics.h"
 #include "graph.h"
 #include <string>
 #include <set>
@@ -78,7 +79,7 @@ int main(int args, const char** argv) {
   for (const pair<int,int>& p : foreground_seeds) { graph.AddFSeed(p.first, p.second); } 
   for (const pair<int,int>& p : background_seeds) { graph.AddBSeed(p.first, p.second); }
 
-  EdmondKarps ekarp(&graph);
+  Dinics ekarp(&graph);
   long long max_flow = ekarp.maxFlow();
   // std::cout << "For file: " << outFile << '\n';
   // std::cout << "Max flow is: " << max_flow << '\n';

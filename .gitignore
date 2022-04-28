@@ -7,3 +7,5 @@ Dockerfile
 .objs
 Dockerfile
 main
+test
+preprocessing
