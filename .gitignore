@@ -9,3 +9,5 @@ Dockerfile
 main
 test
 preprocessing
+input.txt
+out.png
