@@ -1,4 +1,6 @@
-*.md
+TeamContract.md
+TeamProposal.md
+log.md
 feedback/
 .DS_Store
 Dockerfile

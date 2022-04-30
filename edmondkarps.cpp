@@ -10,12 +10,8 @@ long long EdmondKarps::bfs(int s, int t, vector <int>& parent) {
     int u = q.front().first;
     long long flow = q.front().second;
     q.pop();
-    cout << u << '\n';
-    cout << "size_adjance: " << g->adj[u].size() << '\n';
     for (int id: g->adj[u]) {
       Edge e = g->edges[id];
-      cout << "edgy\n";
-      cout << id << ' ' << g->edges.size() << '\n';
       int v = e.to;
       if (parent[v] == -1 && e.cap - e.flow > 0) {
         parent[v] = id;
@@ -40,7 +36,7 @@ long long EdmondKarps::maxFlow() {
     if (!new_flow) {
       break;
     }
-    cout << __LINE__ << '\n';
+    // cout << __LINE__ << '\n';
     flow += new_flow;
     int curr = g->sink;
     while (curr != g->source) {

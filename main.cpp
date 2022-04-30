@@ -17,12 +17,15 @@ namespace opts
   bool help = false;
 }
 
+
 int main(int args, const char** argv) {
   string inFile;
   string outFile;
+  string FlowAlgorithm = "-d";  
   OptionsParser optparser;
   optparser.addArg(inFile);
   optparser.addArg(outFile);
+  optparser.addArg(FlowAlgorithm);
   optparser.addOption("help", opts::help);
   optparser.addOption("h", opts::help);
   optparser.parse(args, argv);
@@ -30,7 +33,7 @@ int main(int args, const char** argv) {
   if (opts::help) {
     cout << "Usage: " << argv[0]
           << " image to perform segmentation "
-            "[input_image.png] [output_image.png]"
+            "[input_image.png] [output_image.png] [flow algorithm]"
           << endl;
     return 0;
   }
@@ -42,51 +45,96 @@ int main(int args, const char** argv) {
     cout << "Please specify output image" << endl;
     return 1;
   }
+  if (FlowAlgorithm == "") {
+    cout << "Default flow algorithm: Dinics" << endl;
+  }
   PNG png;
   png.readFromFile(inFile);
-  cout << "Please type in foreground seeds as 2d coordinates" << endl;
-  cout << "When finished, type -1 -1" << endl;
-  set<pair<int, int>> foreground_seeds;
-  while (true) {
-    int x, y;
-    cin >> x >> y;
-    if (x == -1 && y == -1) {
-      break;
-    }
-    if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
-      cout << "Ignore out of bounds coordinates" << endl;
-      continue;
-    }
-    foreground_seeds.insert({x,y});  
-  }
+  /**
+   * @brief Un comment the below code if Open-CV does not work on your machine
+   * It will act as a CLI to for users to manually input code in
+   */
+  // cout << "Please type in foreground seeds as 2d coordinates" << endl;
+  // cout << "When finished, type -1 -1" << endl;
+  // set<pair<int, int>> foreground_seeds;
+  // while (true) {
+  //   int x, y;
+  //   cin >> x >> y;
+  //   if (x == -1 && y == -1) {
+  //     break;
+  //   }
+  //   if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
+  //     cout << "Ignore out of bounds coordinates" << endl;
+  //     continue;
+  //   }
+  //   foreground_seeds.insert({x,y});  
+  // }
   
-  cout << "Please type in background seeds as 2d coordinates" << endl;
-  cout << "When finished, type -1 -1" << endl;
+  // cout << "Please type in background seeds as 2d coordinates" << endl;
+  // cout << "When finished, type -1 -1" << endl;
+  // set<pair<int, int>> background_seeds;
+  // while (true) {
+  //   int x, y;
+  //   cin >> x >> y;
+  //   if (x == -1 && y == -1) {
+  //     break;
+  //   }
+  //   if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
+  //     cout << "Ignore out of bounds coordinates" << endl;
+  //     continue;
+  //   }
+  //   background_seeds.insert({x, y});  
+  // }
+  
+  set<pair<int, int>> foreground_seeds;
   set<pair<int, int>> background_seeds;
+
+  cout << "Reading in from input.txt" << endl;
+  ifstream file("input.txt");
+  cout << "Reading in foreground seeds..." << endl;
   while (true) {
     int x, y;
-    cin >> x >> y;
+    file >> x >> y;
     if (x == -1 && y == -1) {
       break;
     }
     if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
-      cout << "Ignore out of bounds coordinates" << endl;
+      cout << "Ignore out of bounds coordinate" << endl;
       continue;
     }
-    background_seeds.insert({x, y});  
+    foreground_seeds.insert({x, y});
   }
+  cout << "Reading in background seeds..." << endl;
+  while (true) {
+    int x, y;
+    file >> x >> y;
+    if (x == -1 && y == -1) {
+      break;
+    }
+    if (x >= (int)png.width() || y >= (int)png.height() || x < 0 || y < 0) {
+      cout << "Ignore out of bounds coordinate" << endl;
+      continue;
+    }
+    background_seeds.insert({x, y});
+  }
+
   Graph graph(inFile);
   for (const pair<int,int>& p : foreground_seeds) { graph.AddFSeed(p.first, p.second); } 
   for (const pair<int,int>& p : background_seeds) { graph.AddBSeed(p.first, p.second); }
 
-  Dinics ekarp(&graph);
-  long long max_flow = ekarp.maxFlow();
-  // std::cout << "For file: " << outFile << '\n';
-  // std::cout << "Max flow is: " << max_flow << '\n';
-  vector <pair <int, int>> bg_pixels = ekarp.getBackground();
-  // std::cout << __LINE__ << '\n';
-  PNG segmented_png = graph.drawLine(bg_pixels);  
-  // std::cout << __LINE__ << '\n';
 
+  // std::cout << __LINE__ << '\n';
+  // std::cout << __LINE__ << '\n';
+  vector <pair <int, int>> bg_pixels;
+  if (FlowAlgorithm == "-d") {
+    Dinics dinic(&graph);
+    long long max_flow = dinic.maxFlow();
+    bg_pixels = dinic.getBackground();
+  } else {
+    EdmondKarps ekarp(&graph);
+    long long max_flow = ekarp.maxFlow();
+    bg_pixels = ekarp.getBackground();
+  }
+  PNG segmented_png = graph.drawLine(bg_pixels);  
   segmented_png.writeToFile(outFile);
 }
