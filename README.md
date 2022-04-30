@@ -3,7 +3,7 @@ Repository for our CS 225 Final Project
 
 # Project Overview
 
-Image segmentation has novel applications in many fields, most notably in automated driving, which needs to find distinct features while driving (i.e. people, signs, traffic lights, street markings, etc). With this, we will utilize various network flow algorithms, particularly Dinic's and Edmond-Karp's algorithms, to achieve this image segmentation. More specifically, we will use our network flow algorithms to divide small greyscale images into their foreground and background, which will partition an image into regions based on distinctive features. 
+Image segmentation has novel applications in many fields, most notably in automated driving, which needs to find distinct features while driving (i.e. people, signs, traffic lights, street markings, etc). With this, we utilized various network flow algorithms, particularly Dinic's and Edmond-Karp's algorithms, to achieve this image segmentation. More specifically, we will use our network flow algorithms to divide small greyscale images into their foreground and background, which will partition an image into regions based on distinctive features. 
 
 # GitHub Organization
 * `cs225/` - image manipulation library written by CS 225
