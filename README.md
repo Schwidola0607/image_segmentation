@@ -1,10 +1,13 @@
-# kwandou2-bz16-khoadp2-snyeh2
-final project repo for bkms
+# Image Segmentation
+Repository for our CS 225 Final Project
+
+# Project Overview
+
+Image segmentation has novel applications in many fields, most notably in automated driving, which needs to find distinct features while driving (i.e. people, signs, traffic lights, street markings, etc). With this, we will utilize various network flow algorithms, particularly Dinic's and Edmond-Karp's algorithms, to achieve this image segmentation. More specifically, we will use our network flow algorithms to divide small greyscale images into their foreground and background, which will partition an image into regions based on distinctive features. 
 
 # GitHub Organization
 * `cs225/` - image manipulation library written by CS 225
-* `data/` - initial, unprocessed subset of data taken from CIFAR-10
-* `grayscale_images/` - processed subset of data taken from CIFAR-10
+* `grayscale_images/` - processed subset of data taken from the CIFAR-10 dataset (https://www.cs.toronto.edu/~kriz/cifar.html)
 * `tests/` - test suite + related test files
 * `util/` - utility library by CS 225 used in our main executable
 * `dinics.cpp`, `dinics.h` - class that implements Dinic's algorithm
@@ -29,3 +32,9 @@ final project repo for bkms
 * Run `make test`
 * Run `./test`
 * The test suite consists of 5 3x3 images used to test the two image segmentation algorithms.
+
+# Credits
+* Khoa Pham
+* Brandon Zhang
+* Shao-Min Yeh
+* William Kwandou
