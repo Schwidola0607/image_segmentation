@@ -47,3 +47,16 @@ Khoa compiles papers and other repo's approaches based on some intricacies withi
   * Kwandou created the ImageSegmentation.py script to take in an image path and allow the user to pick background and foreground seeds. It then outputs a text file which you can copy and paste as input into the main image segmentation program and also outputs the seeds that you picked as an output image.
 * **Problems:** None
 * **Next week:** We will use next week to further test our graph algorithms as well as begin work on our final deliverables. We will also look into creating a GUI that prompts users to place down background/foreground seeds on the image.
+
+## Week 5 (April 24 - April 30)
+
+* **Goals:**
+  * Finish GUI for picking seeds - accomplished
+  * Work on final deliverables - in progress
+* **Tasks:**
+  * Kwandou finished the Python script that allows users to input foreground and background seeds.
+  * Brandon and Shao-Min worked on `README.md`
+  * Shao-Min started `results.md`
+  * Everyone recorded their parts for the presentation video.
+* **Problems:** None
+* **Next week:** We will use next week to wrap up our final deliverables.
