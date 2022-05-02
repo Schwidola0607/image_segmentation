@@ -14,6 +14,9 @@ Image segmentation has novel applications in many fields, most notably in automa
 * `md_files/` - Contains our team contract, team proposal, weekly log, and results document
 * `tests/` - Contains our test suite + related test files
 * `util/` - Utility library by CS 225 used in our main executable
+* `SeedGenerator.py` - Prompts the user with a GUI to pick foreground and background seeds on an image
+* `main.cpp` - Takes seeds from the seed generator and runs both flow algorithms on the image to get the foreground/background
+* `preprocessing.cpp` - Executable used to grayscale the images from CIFAR-10
 
 # Running Instructions
 ### How to run the openCV prompt window
