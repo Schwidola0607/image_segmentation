@@ -24,6 +24,7 @@ Image segmentation has novel applications in many fields, most notably in automa
 ### How to run the openCV prompt window
 * Dependencies: `python3`, `opencv`
 * Run `python3 SeedGenerator.py`.
+* Input the file path to the image you want to segment
 * A window will pop up asking you to click on foreground seeds. After that press `Esc`.
 * Same window will now ask you to click on background seeds. After that press `Esc`.
 * An `input.txt` file will be created and the seeded image will appear in the `Output` folder.
