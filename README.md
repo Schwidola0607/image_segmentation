@@ -23,7 +23,11 @@ Image segmentation has novel applications in many fields, most notably in automa
 ### How to run the main executable
 * Navigate to the base directory of this repository in the command line
 * Run `make`
-* Run `./main <input image filepath> <output image filepath>`
+* Run `./main <input image filepath> <output image filepath> <flow algorith>`
+* Example `./main grayscale_images/0002.png 0002_out.png e`   
+  This runs Edmond Karps algorithm on `0002.png` and output a segmented image `0002_out.png`.
+* Example `./main grayscale_images/0026.png 0026_out.png d`   
+  This runs Dinics algorithm on `0026.png` and output a segmented image `0026_out.png`.
 * Provide seed coordinates as directed by the executable
 * The output should be saved where you specified in the initial command
 

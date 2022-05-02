@@ -1,13 +1,12 @@
 #include <iostream>
 #include "util/util.h"
 #include "cs225/PNG.h"
-#include "edmondkarps.h"
-#include "dinics.h"
-#include "graph.h"
+#include "Algorithms/edmondkarps.h"
+#include "Algorithms/dinics.h"
+#include "Graph/graph.h"
 #include <string>
 #include <set>
 #include <algorithm>
-#include "edmondkarps.h"
 
 using namespace util;
 using namespace cs225;
@@ -95,6 +94,7 @@ int main(int args, const char** argv) {
   while (true) {
     int x, y;
     file >> x >> y;
+    cout << x << y;
     if (x == -1 && y == -1) {
       break;
     }
@@ -126,7 +126,7 @@ int main(int args, const char** argv) {
   // std::cout << __LINE__ << '\n';
   // std::cout << __LINE__ << '\n';
   vector <pair <int, int>> bg_pixels;
-  if (FlowAlgorithm == "-d") {
+  if (FlowAlgorithm == "d") {
     Dinics dinic(&graph);
     long long max_flow = dinic.maxFlow();
     bg_pixels = dinic.getBackground();

@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include "edge.h"
-#include "cs225/PNG.h"
+#include "../cs225/PNG.h"
 #include <algorithm>
 
 using std::vector;
