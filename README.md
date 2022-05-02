@@ -43,6 +43,8 @@ Image segmentation has novel applications in many fields, most notably in automa
 * Run `./test`.
 * The test suite consists of 5 3x3 images used to test the two image segmentation algorithms.
 
+### Project Video
+[Video Link](https://drive.google.com/file/d/1WAbGxi_hMabwwfRPrT-8GOaEE79-zblx/view?usp=sharing)
 # Credits
 * Khoa Pham
 * Brandon Zhang
