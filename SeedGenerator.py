@@ -82,7 +82,7 @@ if __name__ == "__main__":
     print("Successfully wrote seed input into input.txt")
 
     # Write the seeded image to a png
-    cv2.imwrite("SeededImage.png", image)
-    print("Successfully wrote seeded image to SeededImage.png")
+    cv2.imwrite("Output/SeededImage.png", image)
+    print("Successfully wrote seeded image to Output/SeededImage.png")
 
 

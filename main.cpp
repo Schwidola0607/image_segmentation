@@ -11,13 +11,13 @@
 using namespace util;
 using namespace cs225;
 using namespace std;
-namespace opts
-{
-  bool help = false;
-}
+// namespace opts
+// {
+//   bool help = false;
+// }
 
 
-int main(int args, const char** argv) {
+int main() { // int args, const char** argv
   string inFile;
   PNG png;
 
@@ -153,4 +153,6 @@ int main(int args, const char** argv) {
   bg_pixels = ekarp.getBackground();
   PNG segmented_png_ekarp = graph.drawLine(bg_pixels);  
   segmented_png_ekarp.writeToFile("Output/edmond-karps.png");
+  
+  cout << "Writing results of Dinics and Edmond-Karps to the Output folder" << endl;
 }
