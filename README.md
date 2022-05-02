@@ -1,5 +1,5 @@
 # kwandou2-bz16-khoadp2-snyeh2
-final project repo for bkms
+Final project repo for bkms. We implemented 2 flow algorithms and a OpenCV prompt for users to select foreground and background seeds. More instructions can be found below.
 
 # GitHub Organization
 * `cs225/` - image manipulation library written by CS 225
@@ -15,17 +15,26 @@ final project repo for bkms
 * `preprocessing.cpp` - executable that was used to process the images in `data/`
 * `results.md` - written report
 
-# Running Instructions
+# Setup instructions
 
+# Running Instructions
+### How to run the openCV prompt window
+* Run `python3 SeedGenerator.py`.
+* A window will pop up asking you to click on foreground seeds. After that press `Esc`.
+* Same window will now ask you to click on background seeds. After that press `Esc`.
+* A seeded image along with a `input.txt` file will be created.
 ### How to run the main executable
-* Navigate to the base directory of this repository in the command line
-* Run `make`
-* Run `./main <input image filepath> <output image filepath>`
-* Provide seed coordinates as directed by the executable
-* The output should be saved where you specified in the initial command
+* Navigate to the base directory of this repository in the command line.
+* Run `make`.
+* Run `./main <input image filepath> <output image filepath>`.
+* Main will automatically read from `input.txt` to get the foreground and background seeds.
+* The output should be saved where you specified in the initial command.
+
+### Alternative running instructions:
+* run `sh -e run.sh` (untested in ews environment).
 
 ### How to run the test suite
-* Navigate to the base directory of this repository in the command line
-* Run `make test`
-* Run `./test`
+* Navigate to the base directory of this repository in the command line.
+* Run `make test`.
+* Run `./test`.
 * The test suite consists of 5 3x3 images used to test the two image segmentation algorithms.

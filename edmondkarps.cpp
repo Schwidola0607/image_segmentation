@@ -1,25 +1,24 @@
 #include "edmondkarps.h"
 #include <iostream>
-using namespace std;
-EdmondKarps::EdmondKarps(Graph* g) : g(g) {}
-long long EdmondKarps::bfs(int s, int t, vector <int>& parent) {
+EdmondKarps::EdmondKarps(Graph* graph) : graph(graph) {}
+long long EdmondKarps::bfs(int source, int target, vector <int>& parent) {
   fill(parent.begin(), parent.end(), -1);      
-  queue <pair<int, long long>> q;
-  q.push({s, INF});
-  while (!q.empty()) {
-    int u = q.front().first;
-    long long flow = q.front().second;
-    q.pop();
-    for (int id: g->adj[u]) {
-      Edge e = g->edges[id];
+  queue <pair<int, long long>> queue;
+  queue.push({source, INF});
+  while (!queue.empty()) {
+    int u = queue.front().first;
+    long long flow = queue.front().second;
+    queue.pop();
+    for (int id: graph->adj[u]) {
+      Edge e = graph->edges[id];
       int v = e.to;
       if (parent[v] == -1 && e.cap - e.flow > 0) {
         parent[v] = id;
         int new_flow = std::min(flow, e.cap - e.flow);
-        if (v == g->sink) {
+        if (v == graph->sink) {
           return new_flow;
         }
-        q.push({v, new_flow});
+        queue.push({v, new_flow});
       } 
     }
   }
@@ -28,22 +27,22 @@ long long EdmondKarps::bfs(int s, int t, vector <int>& parent) {
   
 long long EdmondKarps::maxFlow() {
   long long flow = 0;
-  vector <int> parent(g->num_vertex);
+  vector <int> parent(graph->num_vertex);
   long long new_flow;
   while (true) {
-    new_flow = bfs(g->source, g->sink, parent);
+    new_flow = bfs(graph->source, graph->sink, parent);
     // cout << new_flow << '\n';
     if (!new_flow) {
       break;
     }
     // cout << __LINE__ << '\n';
     flow += new_flow;
-    int curr = g->sink;
-    while (curr != g->source) {
+    int curr = graph->sink;
+    while (curr != graph->source) {
       int id = parent[curr];
-      int prev = g->edges[id].from;
-      g->edges[id].flow += new_flow;
-      g->edges[id ^ 1].flow -= new_flow;
+      int prev = graph->edges[id].from;
+      graph->edges[id].flow += new_flow;
+      graph->edges[id ^ 1].flow -= new_flow;
       curr = prev;
     }
   }
@@ -53,17 +52,17 @@ long long EdmondKarps::maxFlow() {
 
 vector <pair<int, int>> EdmondKarps::getBackground() {
   vector <pair<int, int>> background_pixels;
-  vector <int> vis(g->num_vertex - 2);
-  queue <int> q;
-  q.push(g->source);
-  vis[g->source] = 1;
-  while (!q.empty()) {
-    int u = q.front();
-    q.pop();
-    for (int id: g->adj[u]) {
-      int v = g->edges[id].to;
-      if (!vis[v] && g->edges[id].cap - g->edges[id].flow > 0) {
-        q.push(v);
+  vector <int> vis(graph->num_vertex - 2);
+  queue <int> queue;
+  queue.push(graph->source);
+  vis[graph->source] = 1;
+  while (!queue.empty()) {
+    int u = queue.front();
+    queue.pop();
+    for (int id: graph->adj[u]) {
+      int v = graph->edges[id].to;
+      if (!vis[v] && graph->edges[id].cap - graph->edges[id].flow > 0) {
+        queue.push(v);
         vis[v] = 1;
       }
     }
@@ -71,7 +70,7 @@ vector <pair<int, int>> EdmondKarps::getBackground() {
 
   for (int v = 0; v < (int)vis.size(); v++) {
     if (vis[v]) {
-      background_pixels.push_back(g->coord(v));
+      background_pixels.push_back(graph->coord(v));
     }
   }
 

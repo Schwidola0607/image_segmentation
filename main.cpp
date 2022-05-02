@@ -1,9 +1,9 @@
 #include <iostream>
 #include "util/util.h"
-#include "cs225/PNG.h"
 #include "edmondkarps.h"
 #include "dinics.h"
 #include "graph.h"
+#include "cs225/PNG.h"
 #include <string>
 #include <set>
 #include <algorithm>

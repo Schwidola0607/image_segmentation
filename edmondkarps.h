@@ -13,9 +13,9 @@ const long long INF = INT64_MAX;
 
 class EdmondKarps {
   private:
-    Graph* g;
+    Graph* graph;
   public: 
-    EdmondKarps(Graph* g);
+    EdmondKarps(Graph* graph);
     long long bfs(int s, int t, vector <int>& parent);
     long long maxFlow();
     vector <pair<int, int>> getBackground();
