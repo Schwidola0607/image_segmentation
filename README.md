@@ -5,6 +5,11 @@ Final project repo for bkms. We implemented 2 flow algorithms and a OpenCV promp
 
 Image segmentation has novel applications in many fields, most notably in automated driving, which needs to find distinct features while driving (i.e. people, signs, traffic lights, street markings, etc). With this, we utilized various network flow algorithms, particularly Dinic's and Edmond-Karp's algorithms, to achieve this image segmentation. More specifically, we will use our network flow algorithms to divide small greyscale images into their foreground and background, which will partition an image into regions based on distinctive features. 
 
+### Project Deliverables
+
+* [Video Link](https://drive.google.com/file/d/1WAbGxi_hMabwwfRPrT-8GOaEE79-zblx/view?usp=sharing)
+* [Project Report](https://github-dev.cs.illinois.edu/cs225-sp22/kwandou2-bz16-khoadp2-snyeh2/blob/main/md_files/results.md)
+
 # GitHub Organization
 * `Algorithms/` - Contains the classes that implement our two flow algorithms
 * `Graph/` - Contains the classes that make up our graph representation of an image
@@ -43,8 +48,6 @@ Image segmentation has novel applications in many fields, most notably in automa
 * Run `./test`.
 * The test suite consists of 5 3x3 images used to test the two image segmentation algorithms.
 
-### Project Video
-[Video Link](https://drive.google.com/file/d/1WAbGxi_hMabwwfRPrT-8GOaEE79-zblx/view?usp=sharing)
 # Credits
 * Khoa Pham
 * Brandon Zhang
