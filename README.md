@@ -22,6 +22,15 @@ Image segmentation has novel applications in many fields, most notably in automa
 
 # Running Instructions
 ### How to run the openCV prompt window
+* Dependencies: `python3`, `opencv`
+* Run `python3 SeedGenerator.py`.
+* Input the file path to the image you want to segment
+* A window will pop up asking you to click on foreground seeds. After that press `Esc`.
+* Same window will now ask you to click on background seeds. After that press `Esc`.
+* An `input.txt` file will be created and the seeded image will appear in the `Output` folder.
+
+# Running Instructions
+### How to run the openCV prompt window
 * Run `python3 SeedGenerator.py`.
 * A window will pop up asking you to click on foreground seeds. After that press `Esc`.
 * Same window will now ask you to click on background seeds. After that press `Esc`.
@@ -29,9 +38,9 @@ Image segmentation has novel applications in many fields, most notably in automa
 ### How to run the main executable
 * Navigate to the base directory of this repository in the command line.
 * Run `make`.
-* Run `./main <input image filepath> <output image filepath>`.
-* Main will automatically read from `input.txt` to get the foreground and background seeds.
-* The output should be saved where you specified in the initial command.
+* Run `./main`.
+* Main will automatically read from `input.txt` to get the foreground and background seeds and run Dinics and Edmond-Karps on the seeded image.
+* The output of running the Dinics and Edmond-Karps algorithm will be saved in the `Output` folder.
 
 ### Alternative running instructions:
 * run `sh -e run.sh` (untested in ews environment).

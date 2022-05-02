@@ -5,6 +5,7 @@ import sys
 # Declare foreground (fg) and background (bg) descriptors
 fg_color, bg_color = (0, 255, 0), (0, 0, 255)
 fg_code, bg_code = 1, 2
+scale_factor = 10
 
 def get_seeds(image):
 
@@ -14,9 +15,9 @@ def get_seeds(image):
         color = fg_color if seed_type == "fg" else bg_color
         code  = fg_code  if seed_type == "fg" else bg_code
         # How big to draw the circles (only for visual purposes)
-        radius = 10
+        radius = scale_factor
         cv2.circle(image, (x, y), radius, color, -1)
-        cv2.circle(seeds, (x // 10, y // 10), 1, code, -1)
+        cv2.circle(seeds, (x//scale_factor, y//scale_factor), radius//scale_factor, code, -1)
 
     def mouse_event(event, x, y, flags, seed_type):
         """ Checks for clicks on the image and determines what seeds have been placed """
@@ -60,12 +61,12 @@ if __name__ == "__main__":
     
     # Once it successfully loads the image, get the obtain the seeds and seeded image
     print("Image successfully loaded, please select background and foreground seeds")
-    image = cv2.resize(image, (300, 300))
+    image = cv2.resize(image, (32*scale_factor, 32*scale_factor))
     seeds, image = get_seeds(image)
 
     # Write valid seeds to file
     f = open("input.txt", "w")
-    f.write("./main " + image_path + " out.png\n")
+    f.write(image_path + "\n")
     r, c = seeds.shape
     for i in range(r):
         for j in range(c):
@@ -81,7 +82,7 @@ if __name__ == "__main__":
     print("Successfully wrote seed input into input.txt")
 
     # Write the seeded image to a png
-    cv2.imwrite("SeededImage.png", image)
-    print("Successfully wrote seeded image to SeededImage.png")
+    cv2.imwrite("Output/SeededImage.png", image)
+    print("Successfully wrote seeded image to Output/SeededImage.png")
 
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <algorithm>
-#include "graph.h"
+#include "../Graph/graph.h"
 #include <queue>
 
 using std::vector;
