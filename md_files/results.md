@@ -33,16 +33,27 @@ long long Dinics::maxFlow() {
 
 ## Edmond-Karps
 
-Big o, summarize the process, add some visuals if needed
+Edmond-Karps's Algorithm works as follows: <br/>
+1. Runs BFS to test if there's an augmenting path from source to sink.
+2. Within that BFS, construct a bfs-tree to later trace back the augmenting path.
+4. In the maxflow function, check if the return value of BFS is 0 or not (still have a augmenting path or not).
+5. If no break, If yes push flow and push -flow in reverse edges accordingly.
+6. Repeat 1-5 until a BFS finds no path from source to sink.
+7. Call getBackkground() on the final residual graph to get the cut we want.
+<br/> <br/>
 
+Thus, with this implementation, we have successfully implement a O(VE^2)
 ## Testing
+We use maxFlow tests from [this](https://cses.fi/problemset/task/1694/) competitive programming problem.
+We also make 3x3 high constrasity tests to test our getBackground, draw, drawLines, and other functionalities. 
 
-Add in our image seg/max flow testing and showcase how it's done
+Because of this detailed testing scheme, we have realized multiple bugs in our development process (bugs in Dincis, bugs in how build our graph).
 
 ## Conclusion 
 
 * Ultimately, we found that our algorithms successfully divided a given image into its foreground and background, and these images would be usable in fields that require this information (i.e. automated driving, computer vision, etc) based on our given max flow and getBackground tests. 
 * Besides the notable runtime differences, 
-* Still, we would implement these changes with more time: <br/>
-      * Implementing more flow algorithms, particularly Push-Relabel, would allow us to review the different intricacies between each algorithm. <br/>
-      * Creating our own dataset would allow for more clearer image cuts, as we could utilize better seeds and highlight the overall difference between foreground and background. <br/>
+* Still, we would implement these changes with more time: 
+  * Implementing more flow algorithms, particularly Push-Relabel, would allow us to review the different intricacies between each algorithm. 
+  * Creating our own dataset would allow for more clearer image cuts, as we could utilize better seeds and highlight the overall difference between foreground and background. 
+  * Implement some algorithms to penalize bad cuts, prioritise cut with more vertex, (even cut for fore/background)
