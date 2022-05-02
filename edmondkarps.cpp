@@ -1,7 +1,8 @@
 #include "edmondkarps.h"
 #include <iostream>
+
 EdmondKarps::EdmondKarps(Graph* graph) : graph(graph) {}
-long long EdmondKarps::bfs(int source, int target, vector <int>& parent) {
+long long EdmondKarps::bfs(int source, int target, vector <int>& parent) { // find augmenting path 
   fill(parent.begin(), parent.end(), -1);      
   queue <pair<int, long long>> queue;
   queue.push({source, INF});
@@ -12,27 +13,27 @@ long long EdmondKarps::bfs(int source, int target, vector <int>& parent) {
     for (int id: graph->adj[u]) {
       Edge e = graph->edges[id];
       int v = e.to;
-      if (parent[v] == -1 && e.cap - e.flow > 0) {
-        parent[v] = id;
+      if (parent[v] == -1 && e.cap - e.flow > 0) { // if can be visited on the residual graph
+        parent[v] = id; // mark parent for later updates on the residual graph
         int new_flow = std::min(flow, e.cap - e.flow);
         if (v == graph->sink) {
-          return new_flow;
+          return new_flow; // return augmenting path's flow
         }
         queue.push({v, new_flow});
       } 
     }
   }
-  return 0LL;
+  return 0LL; // 0 if not found any augmenting path
 }
   
-long long EdmondKarps::maxFlow() {
+long long EdmondKarps::maxFlow() { // function to determine max flow
   long long flow = 0;
   vector <int> parent(graph->num_vertex);
   long long new_flow;
   while (true) {
     new_flow = bfs(graph->source, graph->sink, parent);
     // cout << new_flow << '\n';
-    if (!new_flow) {
+    if (!new_flow) { // if no augmenting path found, halt
       break;
     }
     // cout << __LINE__ << '\n';
@@ -41,8 +42,8 @@ long long EdmondKarps::maxFlow() {
     while (curr != graph->source) {
       int id = parent[curr];
       int prev = graph->edges[id].from;
-      graph->edges[id].flow += new_flow;
-      graph->edges[id ^ 1].flow -= new_flow;
+      graph->edges[id].flow += new_flow; // + flow for edge u->v
+      graph->edges[id ^ 1].flow -= new_flow; // -flow for edge v-u 
       curr = prev;
     }
   }
@@ -61,7 +62,8 @@ vector <pair<int, int>> EdmondKarps::getBackground() {
     queue.pop();
     for (int id: graph->adj[u]) {
       int v = graph->edges[id].to;
-      if (!vis[v] && graph->edges[id].cap - graph->edges[id].flow > 0) {
+      // if vertex v can be reached in the final residual graph, then v belongs to the cut containing source
+      if (!vis[v] && graph->edges[id].cap - graph->edges[id].flow > 0) { 
         queue.push(v);
         vis[v] = 1;
       }
