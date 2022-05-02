@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     # Write valid seeds to file
     f = open("input.txt", "w")
-    # f.write("./main " + image_path + " out.png\n")
+    f.write(image_path + "\n")
     r, c = seeds.shape
     for i in range(r):
         for j in range(c):

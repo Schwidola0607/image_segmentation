@@ -1,5 +1,5 @@
-# Image Segmentation
-Repository for our CS 225 Final Project
+# kwandou2-bz16-khoadp2-snyeh2
+Final project repo for bkms. We implemented 2 flow algorithms and a OpenCV prompt for users to select foreground and background seeds. More instructions can be found below.
 
 # Project Overview
 
@@ -18,23 +18,30 @@ Image segmentation has novel applications in many fields, most notably in automa
 * `preprocessing.cpp` - executable that was used to process the images in `data/`
 * `results.md` - written report
 
+# Setup instructions
+
 # Running Instructions
+### How to run the openCV prompt window
+* Dependencies: `python3`, `opencv`
+* Run `python3 SeedGenerator.py`.
+* A window will pop up asking you to click on foreground seeds. After that press `Esc`.
+* Same window will now ask you to click on background seeds. After that press `Esc`.
+* An `input.txt` file will be created and the seeded image will appear in the `Output` folder.
 
 ### How to run the main executable
-* Navigate to the base directory of this repository in the command line
-* Run `make`
-* Run `./main <input image filepath> <output image filepath> <flow algorith>`
-* Example `./main grayscale_images/0002.png 0002_out.png e`   
-  This runs Edmond Karps algorithm on `0002.png` and output a segmented image `0002_out.png`.
-* Example `./main grayscale_images/0026.png 0026_out.png d`   
-  This runs Dinics algorithm on `0026.png` and output a segmented image `0026_out.png`.
-* Provide seed coordinates as directed by the executable
-* The output should be saved where you specified in the initial command
+* Navigate to the base directory of this repository in the command line.
+* Run `make`.
+* Run `./main`.
+* Main will automatically read from `input.txt` to get the foreground and background seeds and run Dinics and Edmond-Karps on the seeded image.
+* The output of running the Dinics and Edmond-Karps algorithm will be saved in the `Output` folder.
+
+### Alternative running instructions:
+* run `sh -e run.sh` (untested in ews environment).
 
 ### How to run the test suite
-* Navigate to the base directory of this repository in the command line
-* Run `make test`
-* Run `./test`
+* Navigate to the base directory of this repository in the command line.
+* Run `make test`.
+* Run `./test`.
 * The test suite consists of 5 3x3 images used to test the two image segmentation algorithms.
 
 # Credits

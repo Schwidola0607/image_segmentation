@@ -1,9 +1,9 @@
 #include "../cs225/catch/catch.hpp"
 
 #include "../cs225/PNG.h"
-#include "../dinics.h"
-#include "../graph.h"
-#include "../edmondkarps.h"
+#include "../Graph/graph.h"
+#include "../Algorithms/dinics.h"
+#include "../Algorithms/edmondkarps.h"
 
 #include <vector>
 #include <utility>
