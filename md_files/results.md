@@ -78,7 +78,6 @@ Because of this detailed testing scheme, we have realized multiple bugs in our d
 ## Conclusion 
 
 * Ultimately, we found that our algorithms successfully divided a given image into its foreground and background, and these images would be usable in fields that require this information (i.e. automated driving, computer vision, etc) based on our given max flow and getBackground tests. 
-* Besides the notable runtime differences, 
 * Still, we would implement these changes with more time: 
   * Implementing more flow algorithms, particularly Push-Relabel, would allow us to review the different intricacies between each algorithm. 
   * Creating our own dataset would allow for more clearer image cuts, as we could utilize better seeds and highlight the overall difference between foreground and background. 
